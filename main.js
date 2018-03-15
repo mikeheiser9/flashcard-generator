@@ -80,23 +80,24 @@ inquirer.prompt([{
     }
     if (command.cards === "Cloze-Cards") {
         console.log("-----------------------------------------------")
-        console.log(clozeCard.clozeCardHolder[0].text);
+        console.log(clozeCard.clozeCardHolder[0].part);
         console.log("-----------------------------------------------")
         inquirer.prompt([{
             type: "input",
             name: "cards",
             message: "What is the missing word?"
         }]).then(function (command) {
-            if (command.name === this.cloze) {
+            // console.log(command);
+            if (command.cards === clozeCard.clozeCardHolder[0].cloze) {
                 console.log("That is correct!");
             } else {
-                console.log("That is incorrect the correct answer is " + this.clozeCard);
+                console.log("That is incorrect the correct answer is " + clozeCard.clozeCardHolder[0].cloze);
             }
             confirm('View Next of Card?')
                 .then(function confirmed() {
                         console.log("-----------------------------------------------")
-                        console.log(clozeCard.clozeCardHolder[1].text);
-                        console.log("-----------------------------------------------")
+                        console.log(clozeCard.clozeCardHolder[1].part);
+                        console.log("-----------------------------------------------")   
                     },
 
                     function cancelled() {

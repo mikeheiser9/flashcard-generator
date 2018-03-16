@@ -79,48 +79,51 @@ inquirer.prompt([{
 
     }
     if (command.cards === "Cloze-Cards") {
-        console.log("-----------------------------------------------")
-        console.log(clozeCard.clozeCardHolder[0].part);
-        console.log("-----------------------------------------------")
-        inquirer.prompt([{
-            type: "input",
-            name: "cards",
-            message: "What is the missing word?"
-        }]).then(function (command) {
-            // console.log(command);
-            if (command.cards === clozeCard.clozeCardHolder[0].cloze) {
-                console.log("That is correct!");
-            } else {
-                console.log("That is incorrect the correct answer is " + clozeCard.clozeCardHolder[0].cloze);
-            }
-            confirm('View Next of Card?')
-                .then(function confirmed() {
-                        console.log("-----------------------------------------------")
-                        console.log(clozeCard.clozeCardHolder[1].part);
-                        console.log("-----------------------------------------------")   
-                    },
-
-                    function cancelled() {
-                        console.log('OOPS ERROR');
-
-                    });
-
-        })
-
+        clozeLogic();
     }
 
 
 });
 
-// var questions = [
-//         {
-//         type: input,
-//         name: answer,
-//         message: "What is the missing word?"
-//     },
-//     {
-//         type: confirm,
-//         name: nextQuestion,
-//         message: "Move onto the next card?"
-//     }
-// ];
+var counter = 0;
+var correctAns = 0;
+var incorrectAns = 0; 
+var i = 0;
+
+
+function clozeLogic() {
+    console.log("-----------------------------------------------")
+    console.log(clozeCard.clozeCardHolder[i].part);
+    console.log("-----------------------------------------------")
+    inquirer.prompt([{
+        type: "input",
+        name: "cards",
+        message: "What is the missing word?"
+    }]).then(function (command) {
+        // console.log(command);
+        if (command.cards === clozeCard.clozeCardHolder[i].cloze) {
+            console.log("That is correct!");
+            correctAns ++;
+        } else {
+            console.log("That is incorrect the correct answer is " + clozeCard.clozeCardHolder[i].cloze);
+            incorrectAns ++
+        }  
+                    
+        confirm('View Next of Card?')
+            .then(function confirmed() {
+                if (counter > clozeCard.clozeCardHolder.length){
+                    console.log("---------------------------------------");
+                    console.log("Your Score:");
+                    console.log("Correct Answers: " + correctAns);
+                    console.log("Incorrect Answers: " + incorrectAns);
+                    console.log("--------------------------------------");
+                };
+                    i++;
+                    clozeLogic();  
+                },
+                function cancelled() {
+                    console.log("Rerun to restart game");
+                });
+    })
+  
+}

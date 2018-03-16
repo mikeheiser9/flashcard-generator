@@ -100,7 +100,6 @@ function clozeLogic() {
         name: "cards",
         message: "What is the missing word?"
     }]).then(function (command) {
-        // console.log(command);
         if (command.cards === clozeCard.clozeCardHolder[i].cloze) {
             console.log("That is correct!");
             correctAns ++;

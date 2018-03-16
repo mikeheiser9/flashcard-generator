@@ -9,18 +9,6 @@ var ClozeCard = function(text, cloze) {
     this.text = text;
     this.cloze = cloze;
     this.part = text.replace(this.cloze, "________");
-    // console.log(this.part);
-
-    //function that returns the full text replaced with a blank for cloze card and pushes into array
-    // this.part = function() {
-    //     if (this.text.includes(this.cloze)) {
-    //         this.text.replace(this.cloze, + "__________");
-    // //else inform user there was an error displaying the card 
-    //     } else {
-    //         console.log("Error displaying card");
-    //     }
-
-    // }
 }
 
 //basic cards
